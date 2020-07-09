@@ -18,20 +18,28 @@ import React from "react";
 
 export const keywordOptions = [
   {
-    value: "Antibody",
-    label: "Antibody",
-    uri: "antibody",
-    type: "antibody",
+    value: "PSC",
+    label: "PSC",
+    uri: "psc",
+    type: "psc",
     color: "pink",
     badge: "badge-warning"
   },
   {
-    value: "Cell Line",
-    label: "Cell Line",
-    uri: "cell_line",
-    type: "cell_line",
-    color: "teal",
-    badge: "badge-primary"
+    value: "PSC Batch",
+    label: "PSC Batch",
+    uri: "pscbatch",
+    type: "pscbatch",
+    color: "blue-grey",
+    badge: "badge-secondary"
+  },
+  {
+    value: "PSC Diff Batch",
+    label: "PSC Diff Batch",
+    uri: "pscdiffbatch",
+    type: "pscdiffbatch",
+    color: "orange",
+    badge: "badge-danger"
   },
   {
     value: "Gene",
@@ -42,22 +50,6 @@ export const keywordOptions = [
     badge: "badge-success"
   },
   {
-    value: "Plasmid",
-    label: "Plasmid",
-    uri: "plasmid",
-    type: "plasmid",
-    color: "blue-grey",
-    badge: "badge-secondary"
-  },
-  {
-    value: "Primer",
-    label: "Primer",
-    uri: "primer",
-    type: "primer",
-    color: "orange",
-    badge: "badge-danger"
-  },
-  {
     value: "qPCR Probe",
     label: "qPCR Probe",
     uri: "qpcr_probe",
@@ -66,10 +58,10 @@ export const keywordOptions = [
     badge: "badge-tertiary"
   },
   {
-    value: "Virus",
-    label: "Virus",
-    uri: "virus",
-    type: "virus",
+    value: "Primary Antibody",
+    label: "Primary Antibody",
+    uri: "p_antibody",
+    type: "p_antibody",
     color: "purple",
     badge: "badge-info"
   }

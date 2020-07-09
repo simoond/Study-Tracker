@@ -67,13 +67,13 @@ export default class KeywordInputs extends React.Component {
       json.hits.hits.forEach(hit => {
         switch (this.state.category) {
 
-          case "Antibody":
+          case "PSC":
             options.push({
               elasticSearchId: hit._id,
-              value: hit._source.doc.name,
-              item_id: hit._source.doc.item_id,
-              label: hit._source.doc.name,
-              type: 'antibody',
+              value: hit._source.doc.registry_id + ': '+hit._source.doc.name,
+              item_id: hit._source.doc.registry_id,
+              label: hit._source.doc.registry_id + ': '+hit._source.doc.name,
+              type: 'psc',
               keyword: hit._source.doc.name,
               source: "TBD"
             });
@@ -104,31 +104,28 @@ export default class KeywordInputs extends React.Component {
             });
             break;
 
-          case "Plasmid":
+          case "PSC Batch":
             options.push({
-              value: hit._source.doc.plasmid_name + ' : '
-                  + (hit._source.doc.lot_name ? hit._source.doc.lot_name : ''),
-              label: hit._source.doc.plasmid_name + ' : '
-                  + (hit._source.doc.lot_name ? hit._source.doc.lot_name : ''),
+              value: hit._source.doc.registry_id+ ' : '+hit._source.doc.name ,
+              label: hit._source.doc.registry_id+ ' : '+hit._source.doc.name ,
               elasticSearchId: hit._id,
-              type: 'plasmid',
-              keyword: hit._source.doc.plasmid_name + ' : '
-                  + (hit._source.doc.lot_name ? hit._source.doc.lot_name : ''),
+              type: 'pscbatch',
+              keyword: hit._source.doc.registry_id+ ' : '+hit._source.doc.name ,
               source: "TBD"
             });
             break;
 
-          case "Primer":
+          case "PSC Diff Batch":
             options.push({
-              value: hit._source.doc.name,
-              primaer_id: hit._source.doc.primer_id,
-              primer_name: hit._source.doc.primer_name,
-              item_id: hit._source.doc.item_id,
-              label: hit._source.doc.primer_id + ' : '
-                  + hit._source.doc.primer_name,
+              value: hit._source.doc.registry_id + ' : '
+                  + hit._source.doc.name,
+              item_id: hit._source.doc.registry_id_id,
+              label: hit._source.doc.registry_id + ' : '
+                  + hit._source.doc.name,
               elasticSearchId: hit._id,
-              type: 'primer',
-              keyword: hit._source.doc.name,
+              type: 'pscdiffbatch',
+              keyword: hit._source.doc.registry_id + ' : '
+                  + hit._source.doc.name,
               source: "TBD"
             });
             break;
@@ -136,7 +133,7 @@ export default class KeywordInputs extends React.Component {
           case "qPCR Probe":
             options.push({
               value: hit._source.doc.name,
-              item_id: hit._source.doc.item_id,
+              item_id: hit._source.doc.registry_id,
               label: hit._source.doc.name,
               elasticSearchId: hit._id,
               type: 'qpcr_probe',
@@ -145,15 +142,13 @@ export default class KeywordInputs extends React.Component {
             });
             break;
 
-          case "Virus":
+          case "Primary Antibody":
             options.push({
-              value: hit._source.doc.virus_id,
-              label: hit._source.doc.virus_id + ' : '
-                  + hit._source.doc.virus_name,
+              value: hit._source.doc.name,
+              label: hit._source.doc.name,
               elasticSearchId: hit._id,
-              type: 'virus',
-              keyword: hit._source.doc.virus_id + ' : '
-                  + hit._source.doc.virus_name,
+              type: 'p_antibody',
+              keyword: hit._source.doc.name,
               source: "TBD"
             });
             break;
@@ -170,7 +165,7 @@ export default class KeywordInputs extends React.Component {
     }
     const uri = keywordOptionMap[this.state.category].uri;
     fetch(
-        'https://vpc-metastore-vf4djege2zqdaav66snthe5ora.us-east-1.es.amazonaws.com/'
+        "https://vpc-fl60-dev-mdjua63vd64vr7tk66xfwn2ms4.us-east-1.es.amazonaws.com/"
         + uri + '/_search?q=*' + input + '*&size=50&pretty=true')
     .then(response => response.json())
     .then(json => {
